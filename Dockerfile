@@ -12,4 +12,4 @@ RUN npm install --prod
 COPY . /usr/src/app
 
 EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+CMD [ "sh", "-c", "npm install && npm run start" ]
