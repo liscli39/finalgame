@@ -163,7 +163,7 @@ Server.prototype.on_teams = async function (req, func) {
 Server.prototype.on_questions = async function (req, func) {
   const db = this.db;
 
-  const questions = JSON.parse(await db.get('questions') || "[]");
+  const questions = JSON.parse(await this.db.get('questions') || JSON.stringify(this.questions));
   return func(0, questions)
 }
 
