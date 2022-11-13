@@ -224,13 +224,21 @@ Server.prototype.on_answer = async function (req, func) {
   const server = this;
   const choices = server.question.choices;
   if (!choices.find(c => c.choice_id == choice_id && c.is_correct)) {
+    server.notifyAll("answer", {
+      team_id, choice_id,
+      is_correct: false
+    })
+    
     return func(400, "Choice incorrect!")
   }
 
   const team = this.teams.find(t => t.team_id == team_id)
   team.point = server.question.point || 50;
 
-  server.notifyAll("answer", team)
+  server.notifyAll("answer", {
+    team_id, choice_id,
+    is_correct: true
+  })
   func(0, "ok");
 }
 
