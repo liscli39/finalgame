@@ -118,9 +118,9 @@ Server.prototype.onDisconnected = function (socket) {
 };
 
 Server.prototype.notifyAll = async function (event, args) {
-  const teams = this.teams;
-  for (const team of teams) {
-    this.sockets[team.socket_id].emit("notify", {
+  const sockets = this.sockets;
+  for (const socket of sockets) {
+    socket.emit("notify", {
       team_id: team.team_id,
       e: event,
       args: args,
