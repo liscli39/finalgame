@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  game_server:
+    container_name: finalgame
+    build: .
+    volumes: 
+      - .:/usr/src/app
+    environment:
+      - REDIS_HOST_NAME=redis
+    links:
+      - redis
+    ports:
+      - "3000:3000"
+    networks:
+      - "webnet"   
+
+  redis:
+    container_name: finalredis
+    image: redis:alpine
+    command: redis-server
+    ports:
+      - "6379:6379"
+    networks:
+      - "webnet"   
+
+networks: 
+  webnet:
+    driver: bridge
