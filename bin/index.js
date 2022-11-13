@@ -216,8 +216,7 @@ Server.prototype.on_ringbell = function (req, func) {
 }
 
 Server.prototype.on_answer = async function (req, func) {
-  if (this.game_status != PLAYING) return func(400, "Question not start");
-  if (this.question != PLAYING) return func(400, "Question not start");
+  if (this.game_status != PLAYING || this.question == null) return func(400, "Question not start");
   const { team_id, choice_id } = req.args;
 
   const server = this;
