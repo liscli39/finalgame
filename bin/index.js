@@ -58,8 +58,8 @@ Server.prototype.start = function (instance_id) {
     server.onConnected(socket);
   });
 
-  httpserver.listen(3000, () => {
-    console.log('listening on *:3000');
+  httpserver.listen(5000, () => {
+    console.log('listening on *:5000');
   });
 }
 
