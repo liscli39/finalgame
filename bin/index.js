@@ -233,6 +233,7 @@ Server.prototype.on_answer = async function (req, func) {
   const team = this.teams.find(t => t.team_id == team_id)
   team.point = server.question.point || 50;
 
+  this.game_status = WAIT;
   server.notifyAll("answer", {
     team_id, choice_id,
     is_correct: true
