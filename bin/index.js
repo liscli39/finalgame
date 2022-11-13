@@ -121,7 +121,6 @@ Server.prototype.notifyAll = async function (event, args) {
   const sockets = this.sockets;
   for (const socket of Object.values(sockets)) {
     socket.emit("notify", {
-      team_id: team.team_id,
       e: event,
       args: args,
     })
