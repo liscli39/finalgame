@@ -119,7 +119,7 @@ Server.prototype.onDisconnected = function (socket) {
 
 Server.prototype.notifyAll = async function (event, args) {
   const sockets = this.sockets;
-  for (const socket of sockets) {
+  for (const socket of Object.values(sockets)) {
     socket.emit("notify", {
       team_id: team.team_id,
       e: event,
@@ -228,7 +228,7 @@ Server.prototype.on_answer = async function (req, func) {
       team_id, choice_id,
       is_correct: false
     })
-    
+
     return func(400, "Choice incorrect!")
   }
 
